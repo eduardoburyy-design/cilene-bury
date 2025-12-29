@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Horário | Cilene Bury</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Agendar Horário</h1>
+    <p>Cilene Bury - Salão de Beleza</p>
+</header>
+
+<section>
+    <form onsubmit="enviarAgendamento(); return false;">
+
+        <label>Nome:</label>
+        <input type="text" id="nome" required>
+
+        <label>Procedimento:</label>
+        <select id="procedimento" required>
+            <option value="">Selecione</option>
+            <option>Corte Feminino</option>
+            <option>Corte Masculino</option>
+            <option>Escova</option>
+            <option>Hidratação</option>
+            <option>Progressiva</option>
+            <option>Coloração</option>
+            <option>Mechas</option>
+            <option>Manicure</option>
+            <option>Pedicure</option>
+            <option>Design de Sobrancelhas</option>
+            <option>Sobrancelha com Henna</option>
+            <option>Maquiagem</option>
+        </select>
+
+        <label>Data:</label>
+        <input type="date" id="data" required>
+
+        <label>Horário:</label>
+        <input type="time" id="hora" required>
+
+        <label>Observações:</label>
+        <textarea id="obs" rows="4"></textarea>
+
+        <button type="submit">Enviar Agendamento</button>
+
+    </form>
+</section>
+
+<script>
+function enviarAgendamento() {
+    let nome = document.getElementById("nome").value;
+    let procedimento = document.getElementById("procedimento").value;
+    let data = document.getElementById("data").value;
+    let hora = document.getElementById("hora").value;
+    let obs = document.getElementById("obs").value;
+
+    let mensagem = 
+`Olá! Gostaria de agendar um horário.
+
+Nome: ${nome}
+Procedimento: ${procedimento}
+Data: ${data}
+Horário: ${hora}
+Observações: ${obs}`;
+
+    /* ===== WHATSAPP ===== */
+    let telefone = "5511915490176"; // exemplo: 5511999999999
+    let whatsappURL = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+    window.open(whatsappURL, "_blank");
+
+    /* ===== EMAIL ===== */
+    let email = "eduardo.buryy@gmail.com";
+    let assunto = "Agendamento - Salão Cilene Bury";
+    let emailURL = `mailto:${email}?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(mensagem)}`;
+    window.open(emailURL);
+}
+</script>
+
+</body>
+</html>
